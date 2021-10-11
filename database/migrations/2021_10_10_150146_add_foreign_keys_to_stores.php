@@ -15,6 +15,8 @@ class AddForeignKeysToStores extends Migration
     {
         Schema::table('stores', function (Blueprint $table) {
             //
+            $table->foreign('trader_id', 'store_trader_fk')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+
         });
     }
 
@@ -26,7 +28,9 @@ class AddForeignKeysToStores extends Migration
     public function down()
     {
         Schema::table('stores', function (Blueprint $table) {
-            //
+
+            $table->dropForeign('store_trader_fk');
+
         });
     }
 }

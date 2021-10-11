@@ -14,11 +14,11 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id', true);
             $table->json('title');
             $table->text('avatar')->nullable()->default('avatars/categories');
             $table->text('slug');
-            $table->integer('parent_id')->index('category_subcategory_fk');
+            $table->integer('parent_id');
             $table->timestamps();
         });
     }

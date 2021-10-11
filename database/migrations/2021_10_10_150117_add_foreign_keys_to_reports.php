@@ -15,6 +15,11 @@ class AddForeignKeysToReports extends Migration
     {
         Schema::table('reports', function (Blueprint $table) {
             //
+
+            $table->foreign('reporter_id', 'reporter_user_fk')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('reported_id', 'reported_user_fk')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+
+
         });
     }
 
@@ -27,6 +32,8 @@ class AddForeignKeysToReports extends Migration
     {
         Schema::table('reports', function (Blueprint $table) {
             //
+            $table->dropIndex('reporter_user_fk');
+            $table->dropIndex('reported_user_fk');
         });
     }
 }

@@ -14,9 +14,10 @@ class CreateReportsTable extends Migration
     public function up()
     {
         Schema::create('reports', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id', true);
             $table->text('description');
-            $table->integer('user_id')->index('report_user_fk');
+            $table->integer('reporter_id')->index('reporter_user_fk');
+            $table->integer('reported_id')->index('reported_user_fk');
             $table->timestamps();
         });
     }
